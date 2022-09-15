@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 
 from api import users, courses, sections
+from db.db_setup import engine
+from db.models import user, course
+
+user.Base.metadata.create_all(bind=engine)
+course.Base.metadata.create_all(bind=engine)
 
 description = """
 Managements system for users, employers or students 🚀
@@ -17,12 +22,12 @@ You will be able to:
 """
 
 app = FastAPI(
-    title="Fast API LMS",
+    title="Management System API",
     description=description,
-    version="0.0.1",
+    version="Alpha 0.0.1",
     contact={
-        "name": "Github KWIATS: ",
-        "url": "https://github.com/kwiats",
+        "name": "Github repository: ",
+        "url": "https://github.com/kwiats/MS-FastAPI/",
     },
     license_info={
         "name": "Apache 2.0",
